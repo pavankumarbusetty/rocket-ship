@@ -144,9 +144,174 @@ Spark:
 - Executes flows in order
 - Monitors execution
   
+## Programming with SDP in Python (Reinsurance Examples)
+#### These examples demonstrates how to build data pipelines for reinsurance analytics using Spark Data Pipelines (SDP). The examples show how to define different types of views and tables—materialized views, temporary views, and streaming tables—to handle both batch and streaming data sources.
 
-# Programming with SDP in SQL (Reinsurance Examples)
-## Creating a Materialized View (Batch) 
+#### The pipeline ingests raw claims and cessions from Kafka, enriches them with policy and treaty reference data, and then aggregates losses at the treaty and regional levels. It also illustrates how multiple data flows can be consolidated into a unified streaming target.
+
+#### In essence, these examples walk through the end-to-end process of transforming raw insurance event streams into curated, queryable datasets that support reinsurance reporting and loss allocation.
+### Import the pipelines API from PySpark to use SDP decorators for defining tables and views.
+```bash
+from pyspark import pipelines as sdp
+```
+### Creating a Materialized View (Batch)
+#### Policies master (batch): This creates a stable, curated materialized view of policy data from Parquet files.
+```bash
+@sdp.materializedview
+def policiesmv():
+    return spark.read.format("parquet").load("/reinsurance/reference/policies")
+```
+### Creating a Materialized View (Batch) — With Name
+#### Treaties master (batch) with explicit name: This defines a materialized view named "treatiesmv" that loads treaty reference data from Delta format.
+```bash
+@sdp.materializedview(name="treatiesmv")
+def treaties():
+    return spark.read.format("delta").load("/reinsurance/reference/treaties")
+```
+### Creating a Temporary View — Intermediate Enrichment
+#### Claims enriched with policy context (execution‑scoped): This temporary view parses raw claims from Kafka, enriches them with policy data, and prepares them for downstream processing.
+```bash
+from pyspark.sql.functions import col, to_date, from_json
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType
+
+@sdp.temporaryview
+def claimsenrichedtv():
+    schema = StructType([
+        StructField("claimid", StringType()),
+        StructField("policyid", StringType()),
+        StructField("eventts", StringType()),
+        StructField("lossamount", DoubleType()),
+        StructField("region", StringType()),
+        StructField("lob", StringType())
+    ])
+
+    return (
+        spark.table("rawclaimsst")
+        .selectExpr("CAST(value AS STRING) AS payload")
+        .select(from_json(col("payload"), schema).alias("r"))
+        .select("r.*")
+        .join(spark.table("policiesmv"), "policyid", "left")
+        .select(
+            "claimid",
+            "policyid",
+            to_date(col("eventts")).alias("lossdate"),
+            col("lossamount").alias("gross_loss"),
+            "region", "lob"
+        )
+    )
+```
+### Creating a Streaming Table  
+#### Raw Claims: This streaming table ingests raw claims events from Kafka into Spark.
+```bash
+@sdp.table(name="rawclaimsst")
+def rawclaims():
+    return (
+        spark.readStream
+        .format("kafka")
+        .option("kafka.bootstrap.servers", "broker1:9092,broker2:9092")
+        .option("subscribe", "claimsevents")
+        .option("startingOffsets", "latest")
+        .load()
+    )
+```
+### Loading from a Streaming Source 
+#### Cessions: This streaming table ingests raw cession events from Kafka into Spark.
+```bash
+@sdp.table(name="rawcessionsst")
+def rawcessions():
+    return (
+        spark.readStream
+        .format("kafka")
+        .option("kafka.bootstrap.servers", "broker:9092")
+        .option("subscribe", "cessionsevents")
+        .load()
+    )
+```
+### Batch Reads
+#### Exposure Schedules: This materialized view loads exposure schedules from CSV files with headers.
+```bash
+@sdp.materializedview(name="exposureschedulesmv")
+def exposureschedules():
+    return (
+        spark.read.format("csv")
+        .option("header", True)
+        .load("/reinsurance/exposure/schedules")
+    )
+```
+### Querying Tables Defined in Your Pipeline
+#### Stream claims → enrich → allocate to treaty → daily treaty loss
+#### These materialized views map claims to treaties and compute daily treaty losses.
+```bash
+from pyspark.sql.functions import col, sum as ssum, coalesce, lit
+
+@sdp.materializedview(name="claimswithtreatiesmv")
+def claimswithtreaties():
+    mapdf = spark.read.format("delta").load("/reinsurance/reference/policytreatymapping")
+
+    return (
+        spark.table("claimsenrichedtv")
+        .join(mapdf, ["policyid", "region", "lob"], "left")
+        .join(spark.table("treatiesmv"), "treatyid", "left")
+        .select(
+            "claimid",
+            "policyid",
+            "treatyid",
+            "lossdate",
+            col("gross_loss"),
+            coalesce(col("share"), lit(1.0)).alias("treatyshare")
+        )
+    )
+
+@sdp.materializedview(name="dailytreatylossesmv")
+def dailytreatylosses():
+    return (
+        spark.table("claimswithtreatiesmv")
+        .withColumn("treatyloss", col("gross_loss") * col("treatyshare"))
+        .groupBy("treatyid", "lossdate")
+        .agg(ssum("treatyloss").alias("dailytreatyloss"))
+    )
+```
+### Creating Tables in a For Loop
+#### This loop dynamically creates region-specific materialized views of daily treaty losses.
+```bash
+from pyspark.sql.functions import collect_list
+
+@sdp.temporaryview
+def regionstv():
+    return spark.read.format("delta").load("/reinsurance/reference/regions")
+
+regionlist = (
+    spark.table("regionstv")
+    .select(collect_list("regionname"))
+    .collect()[0][0]
+)
+
+for region in regionlist:
+    safe = region.lower().replace(" ", "")
+
+    @sdp.materializedview(name=f"dailytreatylosses{safe}mv")
+    def perregiondailylosses(regionfilter=region):
+        return (
+            spark.table("dailytreatylossesmv")
+            .join(spark.table("treatiesmv"), "treatyid")
+            .filter(f"region = '{regionfilter}'")
+        )
+```
+### Using Multiple Flows to Write to a Single Target
+#### This example demonstrates appending multiple cedant claim streams into a single consolidated streaming table.
+```bash
+sdp.createstreamingtable("claimsconsolidatedst")
+
+@sdp.appendflow(target="claimsconsolidatedst")
+def cedantaappend():
+    return spark.readStream.table("cedantaclaimsst")  # already normalized schema
+
+@sdp.appendflow(target="claimsconsolidatedst")
+def cedantbappend():
+    return spark.readStream.table("cedantbclaimsst")
+```
+## Programming with SDP in SQL (Reinsurance Examples)
+### Creating a Materialized View (Batch) 
 ```sql
 CREATE MATERIALIZED VIEW policiesmv
 AS
@@ -161,8 +326,7 @@ SELECT
   deductibleamount
 FROM reinsurancesource.policies_curated;
 ```
- 
-## Creating a Temporary View (Intermediate)
+### Creating a Temporary View (Intermediate)
 ```sql
 CREATE TEMPORARY VIEW policytreatymaptv
 AS
@@ -176,8 +340,7 @@ JOIN treaties_mv t
   ON p.region = t.region
 AND p.lob    = t.lob;
 ```
-
-## Creating a Streaming Table
+### Creating a Streaming Table
 ```sql 
 CREATE STREAMING TABLE rawclaimsst
 AS
@@ -191,9 +354,8 @@ SELECT
   lob
 FROM STREAM reinsurancesource.claims_events;
 ```
-
-## Querying Tables in the Pipeline — Enrich → Aggregate
-### Enriched claims (batch MV consuming streaming):
+### Querying Tables in the Pipeline — Enrich → Aggregate
+#### Enriched claims (batch MV consuming streaming):
 ```sql
 CREATE MATERIALIZED VIEW claimsenrichedmv
 AS
@@ -211,8 +373,7 @@ LEFT JOIN policytreatymaptv m
 AND c.region    = m.region
 AND c.lob       = m.lob;
 ```
-
-### Treaty loss allocation (illustrative share):
+#### Treaty loss allocation (illustrative share):
 ```sql
 CREATE MATERIALIZED VIEW treatyallocationsmv
 AS
@@ -225,8 +386,7 @@ LEFT JOIN treatiesmv t
   ON e.treatyid = t.treatyid
 GROUP BY e.treatyid, e.lossdate;
 ```
-
-### Daily treaty loss (final analytics):
+#### Daily treaty loss (final analytics):
 ```sql 
 CREATE MATERIALIZED VIEW dailytreatylossesmv
 AS
@@ -237,8 +397,7 @@ SELECT
 FROM treatyallocationsmv
 GROUP BY treatyid, lossdate;
 ```
-
-## Using Multiple Flows to Write to a Single Target
+### Using Multiple Flows to Write to a Single Target
 ``` sql
 -- Unified streaming target
 CREATE STREAMING TABLE claimsconsolidatedst;
