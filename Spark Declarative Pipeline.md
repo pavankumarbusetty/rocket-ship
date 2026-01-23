@@ -6,7 +6,7 @@
 3. [Sree Bhavya Kanduri](https://github.com/sreebhavya10), [LinkedIn](https://www.linkedin.com/in/kanduri-sree-bhavya-4001a6246?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
 ## TL;DR   
-This document provides a structured, end‑to‑end overview of Spark Declarative Pipelines (SDP) introduced in Apache Spark 4.1, using examples to illustrate how to describe datasets and transformations declaratively. With SDP, you define what tables/views should exist and how they’re computed, and Spark builds and runs the dependency graph (ordering, parallelism, retries, and incremental updates).
+This document provides a structured, end‑to‑end overview of Spark Declarative Pipelines (SDP) introduced in Apache Spark 4.1.1 released on January 09, 2026, using examples to illustrate how to describe datasets and transformations declaratively. With SDP, you define what tables/views should exist and how they’re computed, and Spark builds and runs the dependency graph (ordering, parallelism, retries, and incremental updates).
 
 ## Overview
 Data engineering is moving away from job‑centric pipelines toward dataset‑centric systems.
