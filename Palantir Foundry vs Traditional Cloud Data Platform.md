@@ -19,11 +19,11 @@ Modern data platforms aim to solve:
 - Lineage
 - Security
 - Analytics
-Operational use cases
--Two dominant approaches exist:
-- - Approach A — Palantir Foundry
+Operational use cases:
+- Two dominant approaches exist:
+- - Approach A —> Palantir Foundry
 Platform-driven, dataset-centric, tightly integrated.
-Approach B — Traditional Cloud Data Platforms
+- - Approach B —> Traditional Cloud Data Platforms
 Service-driven, tool-centric, loosely integrated.
 This document compares both across architecture, pipeline development, governance, security, and operational usage.
 
@@ -31,34 +31,34 @@ This document compares both across architecture, pipeline development, governanc
 ## Architecture Philosophy
 Palantir Foundry:-
 Foundry provides a single integrated data operating system:
-Data ingestion
-Transform pipelines
-Ontology modeling
-Governance
-Lineage tracking
-Operational applications
-Scheduling & orchestration
-Access control
-All components are built into one platform.
+- Data ingestion
+- Transform pipelines
+- Ontology modeling
+- Governance
+- Lineage tracking
+- Operational applications
+- Scheduling & orchestration
+- Access control
+- All components are built into one platform.
 Philosophy:
 Declare data products → Platform manages execution, lineage, and governance
 
 
-Traditional Cloud Platforms
+## Traditional Cloud Platforms
 Built using multiple services:
 Example (AWS stack):
-Storage → S3
-Compute → Spark / EMR / Databricks
-Warehouse → Redshift / Snowflake
-Orchestration → Airflow / Step Functions
-Governance → Glue Catalog / Purview
-BI → Tableau / Power BI
+- Storage → S3
+- Compute → Spark / EMR / Databricks
+- Warehouse → Redshift / Snowflake
+- Orchestration → Airflow / Step Functions
+- Governance → Glue Catalog / Purview
+- BI → Tableau / Power BI
 Philosophy:
-Choose best tools → Integrate them yourself
+- Choose best tools → Integrate them yourself
 
 
-Example 1 — Dataset Transformation
-# Palantir Foundry Transform (PySpark)
+## Example 1 — Dataset Transformation
+Palantir Foundry Transform (PySpark)
 ```bash
 
 from transforms.api import transform, Input, Output
@@ -81,16 +81,16 @@ def compute(output, claims, customers):
     output.write_dataframe(enriched)
 
 ```
-What this shows
+What this shows?
 
-Dataset inputs declared
-Output dataset declared
-Dependency tracking automatic
-No orchestration code required
+- Dataset inputs declared
+- Output dataset declared
+- Dependency tracking automatic
+- No orchestration code required
 
 
-# Example 2 — Incremental Processing
-# Traditional Spark Job (Standalone)
+## Example 2 — Incremental Processing
+Traditional Spark Job (Standalone)
 ```bash
 @transform(
     output=Output("/analytics/sales/daily_incremental"),
@@ -108,12 +108,12 @@ def compute(ctx, output, sales):
 ```
 Platform provides:
 
-Previous run context
-Incremental execution support
-Built-in recompute logic
+- Previous run context
+- Incremental execution support
+- Built-in recompute logic
 
 
-# Traditional Incremental Merge (Spark + Delta)
+## Traditional Incremental Merge (Spark + Delta)
 ```bash
 from delta.tables import DeltaTable
 
@@ -135,13 +135,11 @@ delta_table.alias("t").merge(
 
 Here you must implement:
 
-Merge logic
+- Merge logic
+- Idempotency
+- State handling
 
-Idempotency
-
-State handling
-
-# Example 3 — Orchestration
+## Example 3 — Orchestration
 Traditional Airflow DAG
 ```bash
 from airflow import DAG
@@ -160,10 +158,10 @@ with DAG("claims_pipeline", start_date=datetime(2025,1,1)) as dag:
 ```
 You must manage:
 
-Scheduling
-Retries
-Dependencies
-Monitoring
+- Scheduling
+- Retries
+- Dependencies
+- Monitoring
 
 
 Foundry Pipeline
@@ -172,73 +170,67 @@ Input datasets → Transform → Output datasets
 ```
 
 
-## Why Teams Choose Palantir Foundry Over Traditional Cloud Data Platforms
-1. Native Ontology Layer (Not Just Tables — Business Objects)
-   Foundry provides a built-in Ontology layer that maps datasets into:
+## Why Palantir Foundry Outperforms Traditional Cloud Data Platforms?
+This guide explains the architectural and operational advantages of Palantir Foundry compared to traditional cloud data platforms, especially in governed, operational, and mission-critical environments.
+## 1.Native Ontology Layer (Not Just Tables — Business Objects)
 
-Business objects - Objects represent real-world entities. eg - supplier, Claim, Aircraft, Transaction
-Relationships (links) - Links define how objects connect.
-Actions - Actions are operations that can be executed on objects.. Eg - Insert Object, Delete Object, Trigger Inspection
-Workflows
-Operational decisions
+Foundry provides a built-in Ontology layer that maps datasets into business entities instead of leaving them as raw tables.
 
+It models:
+
+- Business objects — real-world entities
+- Examples: Supplier, Claim, Aircraft, Transaction
+- Relationships (Links) — how objects connect to each other
+- Actions — operations that can be executed on objects
+- Examples: Insert Object, Delete Object, Trigger Inspection
+- Workflows
+- Operational decisions
+  
 This enables:
 
-Operational applications
-Decision systems
-Human workflows
-Scenario modeling
-Object-level security
+- Operational applications
+- Decision systems
+- Human workflows
+- Scenario modeling
+- Object-level security
 
-Traditional Cloud Reality
+## Traditional Cloud Reality
 
-Requires stitching together:
-Semantic layer
-Graph DB
-APIs
-App backend
-Workflow engine
+To achieve similar capability, teams usually need to stitch together:
 
-2. Automatic End-to-End Lineage (Column Level)
+- Semantic layer
+- Graph database
+- APIs
+- Application backend
+- Workflow engine
 
-Foundry
+## 2. Automatic End-to-End Lineage (Column Level)
 
-Automatic lineage capture
-Dataset level
-Transform level
-Column level
-Impact analysis built-in
-No instrumentation required
-Engineers get lineage by default.
+Foundry:
+
+- Foundry captures lineage automatically across:
+- Dataset level
+- Transform level
+- Column level
+
+Features include:
+
+- Automatic lineage capture
+- Built-in impact analysis
+- No instrumentation required
+- Engineers get lineage by default
+
+Lineage is continuously maintained and directly connected to transforms and datasets.
 
 Traditional Cloud
 
-Requires:
-OpenLineage / DataHub / Collibra
-Metadata scanners
-Manual tagging
-Partial lineage gaps
-
-➡️ Often incomplete or delayed.
+- Typically requires external tooling:
+- OpenLineage / DataHub / Collibra
+- Metadata scanners
+- Manual tagging
 
 3. Built-In Dev → Test → Prod Promotion Model
 
-Foundry
-
-Branch-based data development
-Dataset versioning
-Transform versioning
-Safe promotion workflows
-Data diff between versions
-Rollback support
-Data pipelines behave like software releases.
-
-In Palantir Foundry, data pipelines behave like software releases, not just scheduled jobs.
-Instead of manually managing environments and deployments, Foundry provides a native promotion workflow for:
-Transforms, Datasets, Pipelines, Ontology changes, Applications
-This is built directly into the platform — not added via external CI/CD tooling.
-
-Palantir Foundry includes a built-in Dev → Test → Prod promotion model where data pipelines behave like software releases. Engineers develop changes in isolated branches with fully versioned datasets and transforms, validate outputs using dataset diffs, and promote updates through controlled workflows. Every dataset and transform version is reproducible and rollback-ready. Unlike traditional cloud data platforms — where environment promotion requires custom CI/CD and infrastructure duplication — Foundry provides native, branch-based data development and safe promotion as a platform feature.
 
 Traditional Cloud
 
