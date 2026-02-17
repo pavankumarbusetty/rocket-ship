@@ -4,13 +4,13 @@ title: "Data Preparation for AI"
 ---
 
 # Data Preparation for AI
-![download](https://github.com/user-attachments/assets/be93813a-dfa4-4ebf-a22c-7a30a525599d)
+<img src="/images/5_DataAI_Main.png" width="95%" align="center" alt="Data Preparation for AI" />
 
 
 ## Collab     
 1. [Pavan Kumar Busetty](https://github.com/pavankumarbusetty), [LinkedIn](https://www.linkedin.com/in/pavankumar-busetty/)
-2. [Shivani Patil](), [LinkedIn]()
-3. [Shruthi Raj](), [LinkedIn]()
+2. [Shivani Patil](https://github.com/shivanidp7), [LinkedIn](https://www.linkedin.com/in/shivani-patil-0b0825208?utm_source=share_via&utm_content=profile&utm_medium=member_android)
+3. [Shruthi Raj](https://github.com/shrutiraj25), [LinkedIn](http://linkedin.com/in/shruti-raj7)
 4. [Jaya Chandran](), [LinkedIn]()
 5. [Shaurya Agarwal](https://www.linkedin.com/in/shauryashaurya/)
 
