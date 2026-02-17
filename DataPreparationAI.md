@@ -283,3 +283,10 @@ Contains only pixel-level text.<br>
 ##### STEP 4 — Parse & Extract Text
 Start with:<br>
 
+**Block: Convert Media Set to Table Rows**
+ Transforms each file into a structured row.
+Then apply:<br>
+
+**Block: Extract Text from PDF (OCR)**
+-	Used when raw text is not present
+-	Output = Array of pages ([page_1_text, page_2_text, ...])
