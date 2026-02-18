@@ -64,9 +64,9 @@
         </td>
     </tr>
 </table>
-
+                   
 <hr />
-
+            
 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 0 !important; background-color: #ffffff !important; border-style: hidden !important;">
     <tr style="border: 0 !important; background-color: #ffffff !important;">
         <td width="40%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
@@ -82,9 +82,9 @@
         </td>
     </tr>
 </table>
-
+               
 <hr />
-
+             
 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 0 !important; background-color: #ffffff !important; border-style: hidden !important;">
     <tr style="border: 0 !important; background-color: #ffffff !important;">
         <td width="60%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
@@ -98,6 +98,41 @@
                 <li><a href="https://github.com/vrindamakkar">Vrinda Makkar</a>, <a href="https://www.linkedin.com/in/vrinda-makkar/">LinkedIn</a></li>
                 <li><a href="https://github.com/chinmay08">Chinmay Sutar</a>, <a href="https://www.linkedin.com/in/chinmay-sutar-a40135141/">LinkedIn</a></li>
             </ol>
+        </td>
+    </tr>
+</table>
+                    
+<hr />
+            
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 0 !important; background-color: #ffffff !important; border-style: hidden !important;">
+    <tr style="border: 0 !important; background-color: #ffffff !important;">
+        <td width="40%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
+            <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.2;">03 <a href="https://github.com/shauryashaurya/rocket-ship/blob/main/dspy_and_FoundryAIP.md">Leveraging DSPy with Foundry AIP: Adaptive AI Meets Enterprise-Grade Infrastructure</a></h3>
+            <h4 style="margin-top: 15px !important; margin-bottom: 5px !important;">Collaborators:</h4>
+            <ol style="margin-top: 0 !important;">
+                <li><a href="https://github.com/nileshsaraf56">Nilesh Saraf</a>, <a href="https://www.linkedin.com/in/nilesh-saraf-8b7aa327b/">LinkedIn</a></li>
+                <li><a href="https://github.com/achaudhury7378">Abhishek Narayan Chaudhury</a>, <a href="https://www.linkedin.com/in/abhishek-chaudhury-07422b191/">LinkedIn</a></li>
+            </ol>
+        </td>
+        <td width="60%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
+            <img src="./images/05-dspy-aip-foundry" width="100%" style="display: block; margin: 0 !important; padding: 0 !important; border: 0 !important; outline: none !important; box-shadow: none !important;" alt="MLOps in Palantir Foundry" />
+        </td>
+    </tr>
+</table>
+
+<hr />
+
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 0 !important; background-color: #ffffff !important; border-style: hidden !important;">
+    <tr style="border: 0 !important; background-color: #ffffff !important;">
+        <td width="60%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
+            <img src="./images/06-cloud-platforms-and-foundry.png" width="100%" style="display: block; margin: 0 !important; padding: 0 !important; border: 0 !important; outline: none !important; box-shadow: none !important;" alt="GenAI Applications in Palantir Foundry (AIP)" />
+        </td>
+        <td width="40%" valign="top" style="vertical-align: top !important; padding: 10px; border: 0 !important; background-color: #ffffff !important; border-color: #ffffff !important;">
+            <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.2;">04 <a href="https://github.com/shauryashaurya/rocket-ship/blob/main/Palantir%20Foundry%20vs%20Traditional%20Cloud%20Data%20Platform.md">Palantir Foundry vs Traditional Cloud Data Platforms</a></h3>
+            <h4 style="margin-top: 15px !important; margin-bottom: 5px !important;">Collaborators:</h4>                      
+            1. [Prashant Jha](https://github.com/PrashantJha29), [LinkedIn](https://www.linkedin.com/in/prashantjha29/)            
+			2. [Ankita Hatibaruah](https://github.com/Ahb98), [LinkedIn](http://linkedin.com/in/ankita-hatibaruah-bb2a62218)                
+			3. [Pavan Kumar Busetty](https://github.com/pavankumarbusetty), [LinkedIn](https://www.linkedin.com/in/pavankumar-busetty/)                          
         </td>
     </tr>
 </table>

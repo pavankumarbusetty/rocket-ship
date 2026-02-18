@@ -1,4 +1,17 @@
-# Leveraging DSPy with Foundry AIP: Adaptive AI Meets Enterprise-Grade Infrastructure
+---
+layout: default
+title: "Leveraging DSPy with Foundry AIP: Adaptive AI Meets Enterprise-Grade Infrastructure"
+---
+
+
+
+
+# Leveraging DSPy with Foundry AIP: Adaptive AI Meets Enterprise-Grade Infrastructure                             
+                              
+<img src="./images/05-dspy-aip-foundry.png" width="95%" align="center" alt="MLOps in Palantir Foundry" />                          
+                          
+                          
+---                          
 
 ## Collab
 
