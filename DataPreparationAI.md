@@ -319,7 +319,7 @@ Large text blocks are split into **semantically meaningful chunks** using **Chun
 -	Header/section-based
 -	With controlled overlap to preserve context
 
-![P6](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P6.png)
+![P6](images/5_DataAI_P6.png)
 
 #### Step 6 — Generate Embeddings
 
