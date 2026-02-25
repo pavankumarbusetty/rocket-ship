@@ -12,7 +12,7 @@ title: "Data Preparation for AI"
 2. [Shivani Patil](https://github.com/shivanidp7), [LinkedIn](https://www.linkedin.com/in/shivani-patil-0b0825208?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 3. [Shruti Raj](https://github.com/shrutiraj25), [LinkedIn](http://linkedin.com/in/shruti-raj7)
 4. [Jaya Chandran](https://github.com/Jayachandran9283), [LinkedIn](https://www.linkedin.com/in/jaya-chandran-s-7ab3bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
-5. [Shaurya Agarwal](https://www.linkedin.com/in/shauryashaurya/)
+
 
 ## TL;DR
 Built an end-to-end enterprise data preparation framework in Palantir Foundry covering structured and unstructured data.
