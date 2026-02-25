@@ -4,7 +4,7 @@ title: "Data Preparation for AI"
 ---
 
 # Data Preparation for AI
-<img src="/images/5_DataAI_Main.png" width="95%" align="center" alt="Data Preparation for AI" />
+<img src="./images/5_DataAI_Main.png" width="95%" align="center" alt="Data Preparation for AI" />
 
 
 ## Collab     
@@ -144,7 +144,7 @@ Create them from **New** → **Object Type**
 #### Step 2 — Choose Stable Identifiers
 Each object type must be anchored to a stable, globally unique identifier. These identifiers ensure that the same real-world entity is consistently recognized across datasets, pipelines, and applications. For example, Customer ID can serve as the primary key for the Customer object, while a human-readable attribute such as Last Name can be used as the display title.
 
-![step2](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S2.png)
+![step2](images/5_DataAI_S2.png)
 
 The same principle is applied across Product and Sales objects to maintain consistent identity and traceability across the ontology.
 
@@ -160,7 +160,7 @@ Beyond defining individual objects, Ontology captures how business entities rela
 -	Sales -> Product as many-to-many relationship
 -	Relationships are derived from foreign keys and join logic to maintain referential integrity across objects.
 
-![step4](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S3.png)
+![step4](images/5_DataAI_S3.png)
 
 #### Step 5 — Attach Policies (Security & Sensitivity) 
 Security and data sensitivity are embedded directly into the Ontology layer, ensuring that sensitive information is protected consistently across all applications and users. Instead of managing access separately in downstream systems, policies are defined at the data model level, making governance enforceable by design.
@@ -169,11 +169,11 @@ Sensitive attributes such as email and phone are marked as PII and configured fo
 **PII Protection with Cipher**: 
 -	Create a Cipher Channel and issue a Cipher Data Manager License. 
 
-![step5_1](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S4.png)
+![step5_1](images/5_DataAI_S4.png)
 
-![step5_2](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S5.png)
+![step5_2](images/5_DataAI_S5.png)
 
-![step5_3](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S6.png)
+![step5_3](images/5_DataAI_S6.png)
 
 -	Add the bellaso-python-lib to your code repository. (Add bellaso-python-lib in the requirements.run block in conda_recipe/meta.yml. You can also do this automatically by adding it in the Libraries panel of your Code Repository environment.)
 -	Encrypt PII columns in your Python transform using Cipher operations as per the example shown:
@@ -198,9 +198,9 @@ from bellaso_python_lib.encryption.encrypter_input import EncrypterInput
 -	Create a restricted view of the backing dataset and compose your row-level security policy (e.g., restrict access to rows where region = ‘EMEA’ to specific user groups).
 -	Assign the policy to the appropriate user groups and save. Only users who meet the policy criteria will be able to view those rows
 
-![step5_6](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S8.png)
+![step5_6](images/5_DataAI_S8.png)
 
-![step5_5](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_S7.png)
+![step5_5](images/5_DataAI_S7.png)
 
 #### Step 6 — Create Derived Semantics
 Ontology also supports derived attributes that encode business logic directly into the data model. These computed properties allow analytics and AI applications to use consistent, trusted metrics without recalculating logic in every downstream system.
@@ -249,11 +249,11 @@ Unstructured Data → Parsing → Extraction → Text → Chunking → Tokenizat
 
 ```
 
-![P1](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P1.png)
+![P1](images/5_DataAI_P1.png)
 
 #### STEP‑BY‑STEP PIPELINE
 #### Step 1 — Upload Unstructured Files to a Media Set
-![P2](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P2.png)
+![P2](images/5_DataAI_P2.png)
 Unstructured documents like **PDFs, PPTs, scanned pages, or images** are uploaded into a Media Set.
 -	At this stage, files are still **raw binary data**.
 -	No semantic meaning exists yet.
@@ -267,7 +267,7 @@ For historical or already‑ingested data.
 For continuous incoming documents (real‑time ingestion).
 Both modes apply the same transformations—only timing changes.
 
-![P3](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P3.png)
+![P3](images/5_DataAI_P3.png)
 
 #### Step 3 — Document Nature Identification
 Every document is either:
@@ -283,7 +283,7 @@ Contains only pixel-level text.<br>
 - Use OCR only if text is missing
 
 
-![P4](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P4.png)
+![P4](images/5_DataAI_P4.png)
 
 #### Step 4 — Parse & Extract Text
 Start with:<br>
@@ -302,7 +302,7 @@ Normalize arrays via:
 
 **Result**: Clean page-level text with file ID + page number.
 
-![P5](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P5.png)
+![P5](images/5_DataAI_P5.png)
 
 #### Step 5 — Chunking the Extracted Text
 Large text blocks are split into **semantically meaningful chunks** using **Chunk String**.
@@ -319,7 +319,7 @@ Large text blocks are split into **semantically meaningful chunks** using **Chun
 -	Header/section-based
 -	With controlled overlap to preserve context
 
-![P6](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P6.png)
+![P6](images/5_DataAI_P6.png)
 
 #### Step 6 — Generate Embeddings
 
@@ -332,7 +332,7 @@ Embeddings capture:<br>
 -	Topic
 ```Output → One vector per chunk → AI‑ready representation.```
 
-![P7](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_P7.png)
+![P7](images/5_DataAI_P7.png)
 
 #### Step 7 — Store Output as Ontology Objects
 Final embeddings are stored as Ontology Object Types.<br>
@@ -372,7 +372,7 @@ Pipeline Builder transforms messy, unstructured documents into precise, semantic
 
 ### 2.)Unstructured Data preparation for AI modals using code repository:
 Preparing unstructured data, such as PDFs, for AI model training and inference is a common workflow in Palantir Foundry. This article outlines a robust, production-ready pipeline using the Foundry code repository, covering data ingestion from Microsoft SharePoint, PDF extraction (with a comparison of available libraries), normalization, semantic chunking, embedding strategies, vector database integration, data versioning, and guidance on choosing between snapshot and incremental transforms.
-![C1](https://github.com/pavankumarbusetty/rocket-ship/blob/main/images/5_DataAI_C1.png)
+![C2](images/5_DataAI_C2.png)
 
 #### Step 1: Data Ingestion from Microsoft SharePoint
 Foundry provides a SharePoint Online connector for ingesting files (including PDFs) directly into datasets. The connector supports file-based ingestion and can be configured for scheduled syncs.<br>
@@ -384,7 +384,7 @@ Foundry provides a SharePoint Online connector for ingesting files (including PD
 -	Configure the connector to ingest files from your SharePoint site. The connector preserves file formats, so PDFs remain unchanged for downstream processing.
 
 Note: Only SharePoint Online is supported natively. For on-premises SharePoint, use a REST API source type instead.<br>
-<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/86ec4b8a-5cf7-4623-a3d3-24c8407fa5af" />
+![C1](images/5_DataAI_C1.png)
 
 #### Step 2: Data Extraction from PDFs
 
