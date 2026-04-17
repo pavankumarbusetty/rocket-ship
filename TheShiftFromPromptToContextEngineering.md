@@ -33,3 +33,7 @@ That is where prompt engineering begins to reach its limit. The problem shifts f
 **Context engineering** is the discipline of designing the full information state around the prompt. It includes **retrieval, memory, conversation history, tool access, permissions, ranking, compression, and timing** in other words, everything that determines what the model sees when it reasons. Put simply, **prompt engineering optimizes the instruction; context engineering optimizes the situation**.
 
 <img src="./images/PvsC_03.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_03" />
+
+This is why the rise of **RAG, long-context models, memory systems, tool-calling, and agents** all points in the same direction. These may appear to be separate innovations, but they address one shared challenge: models perform best when they receive the **right information, in the right form, at the right moment**. As recent work on long context has shown, simply adding more tokens is not enough. Context quality depends on **selection, placement, and relevance**, not just scale.
+
+Once this becomes clear, AI no longer looks like a pure prompting problem. It begins to look like a **systems design problem**. The most capable applications are now defined less by clever wording and more by how effectively they **retrieve evidence, preserve useful memory, expose tools, and maintain state** across steps and sessions.
