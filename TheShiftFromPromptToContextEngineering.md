@@ -57,5 +57,4 @@ The shift from **prompt engineering to context engineering** reflects a deeper c
 Prompt engineering made AI **impressive** because it showed how much could change when the instruction changed. **Context engineering** is what will make AI **dependable, personalized, and truly agentic**, because the future of AI will be shaped not only by **how well we ask**, but by **how well we design the environment** in which the model **thinks, remembers, retrieves, and acts**.<br>
 
 **The next era of AI will belong not just to better prompts, but to better context systems**.
-
-# [Back to Rocket Ship front page](https://shauryashaurya.github.io/rocket-ship/)        
+  
