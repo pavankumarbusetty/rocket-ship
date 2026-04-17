@@ -4,7 +4,7 @@ title: "The Shift from Prompt Engineering to Context Engineering"
 ---
 
 # From Prompt Engineering to Context Engineering: How AI Systems Are Evolving
-#### Why the next leap in AI is coming not from smarter prompts alone, but from better memory, retrieval, and state-aware orchestration.
+Why the next leap in AI is coming not from smarter prompts alone, but from better memory, retrieval, and state-aware orchestration.
 <img src="./images/PvsC_01.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering" />
 
 ## TL;DR
@@ -19,3 +19,11 @@ This phase of progress established an important principle: **the way a model is 
 A language model can respond only through the information available to it at the moment of inference. If the most relevant facts are missing, outdated, poorly retrieved, or buried within an overloaded context window, even the most carefully designed prompt will fall short. This realization has led to a broader shift in how AI systems are being built and evaluated. The conversation is no longer centered only on **how to ask better**, but also on **how to ensure the model has the right context when it answers**. That is the foundation of the transition from prompt engineering to context engineering.<br>
 
 <img src="./images/PvsC_002.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_02" />
+
+### What Prompt Engineering Solved and Where It Hit a Wall
+
+**Prompt engineering** remains valuable because it improves performance at the instruction layer. It helps define the task clearly, shape the output, provide examples, and guide the model toward a desired style of reasoning. For bounded use cases such as summarization, extraction, classification, formatting, or isolated coding support, this is often enough. In such settings, the prompt can carry most of the information needed for a strong response.<br>
+
+Its limitations become visible when AI moves into **more complex, real-world workflows**. Enterprise assistants must work with **private documents**, research copilots need **current information**, and long-running agents must remember preferences, use tools, and track progress across steps. In these cases, the challenge is no longer only about asking well. It becomes a question of **what the model knows, what it can access, and what it can retain while solving the task**.<br>
+
+That is where prompt engineering begins to reach its limit. The problem shifts from refining instructions to designing the model’s **working environment the context, memory, retrieval, and tools** that shape how effectively it can operate.
