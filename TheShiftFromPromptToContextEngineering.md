@@ -18,4 +18,4 @@ This phase of progress established an important principle: **the way a model is 
 
 A language model can respond only through the information available to it at the moment of inference. If the most relevant facts are missing, outdated, poorly retrieved, or buried within an overloaded context window, even the most carefully designed prompt will fall short. This realization has led to a broader shift in how AI systems are being built and evaluated. The conversation is no longer centered only on **how to ask better**, but also on **how to ensure the model has the right context when it answers**. That is the foundation of the transition from prompt engineering to context engineering.<br>
 
-<img src="./images/PvsC_02.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_02" />
+<img src="./images/PvsC_002.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_02" />
