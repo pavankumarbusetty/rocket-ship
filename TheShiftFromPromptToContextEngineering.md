@@ -47,3 +47,6 @@ Systems become more **persistent**. A prompt-driven assistant may appear capable
 Systems become more **operational**. The move toward agents is not simply a change in interface; it is a shift toward context-aware action. An agent does more than generate replies. It selects tools, checks intermediate outputs, uses memory, updates its state, and identifies what information is needed next. In this sense, context engineering is what enables AI to move from answering questions to handling work.<br>
 
 Finally, the source of competitive advantage changes. In the prompt era, differentiation often came from finding the best phrasing or reasoning pattern. In the context era, it comes from building better retrieval pipelines, memory policies, context ranking, tool interfaces, and orchestration logic. The real moat no longer sits inside the prompt alone it extends into the surrounding system that informs and supports the model.
+
+
+# [Back to Rocket Ship front page](https://shauryashaurya.github.io/rocket-ship/)        
