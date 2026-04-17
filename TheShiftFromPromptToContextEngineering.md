@@ -48,5 +48,5 @@ Systems become more **operational**. The move toward agents is not simply a chan
 
 Finally, the source of competitive advantage changes. In the prompt era, differentiation often came from finding the best phrasing or reasoning pattern. In the context era, it comes from building better retrieval pipelines, memory policies, context ranking, tool interfaces, and orchestration logic. The real moat no longer sits inside the prompt alone it extends into the surrounding system that informs and supports the model.
 
-
+<img src="./images/PvsC_04.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_04" />
 # [Back to Rocket Ship front page](https://shauryashaurya.github.io/rocket-ship/)        
