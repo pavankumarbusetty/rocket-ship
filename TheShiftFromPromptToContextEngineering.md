@@ -27,3 +27,9 @@ A language model can respond only through the information available to it at the
 Its limitations become visible when AI moves into **more complex, real-world workflows**. Enterprise assistants must work with **private documents**, research copilots need **current information**, and long-running agents must remember preferences, use tools, and track progress across steps. In these cases, the challenge is no longer only about asking well. It becomes a question of **what the model knows, what it can access, and what it can retain while solving the task**.<br>
 
 That is where prompt engineering begins to reach its limit. The problem shifts from refining instructions to designing the model’s **working environment the context, memory, retrieval, and tools** that shape how effectively it can operate.
+
+### Why Context Engineering Is Becoming the New Center of Gravity
+
+**Context engineering** is the discipline of designing the full information state around the prompt. It includes **retrieval, memory, conversation history, tool access, permissions, ranking, compression, and timing** in other words, everything that determines what the model sees when it reasons. Put simply, **prompt engineering optimizes the instruction; context engineering optimizes the situation**.
+
+<img src="./images/PvsC_03.png" width="95%" align="center" alt="Prompt Engineering to Context Engineering_03" />
