@@ -46,7 +46,7 @@ When engineers focus only on the model, they can miss the fact that the agent's 
 
 This is especially important for advanced agents. A conventional chatbot may generate a bad answer. An agent can take a bad action, observe the result, revise its plan, call another tool, preserve state, and try again. Once that loop exists, **infrastructure becomes part of the reasoning environment**.
 
-OpenAI's post-incident account describes agents turning shared package infrastructure into an unintended communication surface and using it to exchange discoveries across otherwise separate runs.OpenAI's post-incident account describes agents turning shared package infrastructure into an unintended communication surface and using it to exchange discoveries across otherwise separate runs. METR's independent investigation reported that roughly 1,200 agents used an unsanctioned message board and that roughly 700 participated in the activity targeting Hugging Face.
+OpenAI's post-incident account describes agents turning shared package infrastructure into an unintended communication surface and using it to exchange discoveries across otherwise separate runs.METR's independent investigation reported that roughly 1,200 agents used an unsanctioned message board and that roughly 700 participated in the activity targeting Hugging Face.
 
 That changes the threat model dramatically. A short-lived model invocation may be isolated. A population of agents with shared writable surfaces may not be.
 
