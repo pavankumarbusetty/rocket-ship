@@ -10,7 +10,7 @@ Why agent safety must be engineered across models, memory, tools, identity, data
 <p align="center"><em>Illustrative visual created for this article.</em></p>
 
 ## Collab
-1. [Preeti Kosaraju](), [LinkedIn]()
+1. [Preeti Kosaraju](https://github.com/preetikosaraju), [LinkedIn](https://www.linkedin.com/in/preeti-kosaraju?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 2. [Pavan Kumar Busetty](https://github.com/pavankumarbusetty), [LinkedIn](https://www.linkedin.com/in/pavankumar-busetty/)
 
 ## TL;DR
